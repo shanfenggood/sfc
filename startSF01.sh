@@ -1,0 +1,1 @@
+nohup ./target/release/node-template --base-path /data/substrate/node01 --chain ./customSpecRaw.json --port 30333  --ws-port 9944  --rpc-port 9933   --validator  --rpc-methods Unsafe  --name sfc01 --rpc-cors all --ws-external  > logs/sfc01.log 2>&1 &

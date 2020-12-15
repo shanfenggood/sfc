@@ -1,0 +1,1 @@
+nohup ./target/release/node-template --base-path /data/substrate/node02 --chain ./customSpecRaw.json --port 30335  --ws-port 9945  --rpc-port 9935   --validator  --rpc-methods Unsafe  --name sfc02 --bootnodes /ip4/172.16.0.13/tcp/30333/p2p/12D3KooWKwCZnmc7zwL8rtEQWMc8gfV6vWwFegcWqrdXCiW8TpCD --rpc-cors all --ws-external  > logs/sfc02.log 2>&1 &
