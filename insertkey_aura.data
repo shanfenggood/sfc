@@ -1,0 +1,10 @@
+{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_insertKey",
+  "params": [
+    "aura",
+    "spend fiscal link void sadness ginger trigger physical palace material type gap",
+    "0x7c8c94afef221e34e3347c7beff213a968f9021fdd5c57a64a532fcaec26b321"
+  ]
+}

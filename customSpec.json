@@ -17,7 +17,8 @@
       "palletAura": {
         "authorities": [
 		  "5GQeUPTrCmc7rNvmxX9vqRisPuBJJXasDDokU7CSU9GcFjqb",
-		  "5HbXJRjtcTWjK2qNtmQbLRm64zTQVG6NKZbY8J9yqZkuUDNb"
+		  "5HbXJRjtcTWjK2qNtmQbLRm64zTQVG6NKZbY8J9yqZkuUDNb",
+		  "5Et1ZCvwMjK25Ya5RnKGp4JE3ctTo7rJCDs6kfkx5GH1LRYj"
         ]
       },
       "palletGrandpa": {
@@ -27,6 +28,9 @@
 	  ],
 	  [
 		  "5FD6zFt2koP6u4oqLmRQvTHtJZcMFhJXDYmi55esnHtzfgzq",1
+	  ],	
+	  [
+		  "5EDtWTMpJ4Pbo2wz9KacHfk5E7gpmx7XoSc8n2sgtfuPAaEq",1
 	  ]
 	]
       },
