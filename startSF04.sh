@@ -1,0 +1,1 @@
+nohup ./target/release/node-template --base-path /data/substrate/node04 --chain ./customSpecRaw.json --port 30337  --ws-port 9947  --rpc-port 9937   --validator  --rpc-methods Unsafe  --name sfc04 --bootnodes /ip4/172.16.0.11/tcp/30336/p2p/12D3KooWM7yimnYVdYNwdDmcupEUeVKvmtr7opvcKDxufvtke8VB  --rpc-cors all --ws-external  > logs/sfc04.log 2>&1 &

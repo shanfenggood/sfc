@@ -18,7 +18,8 @@
         "authorities": [
 		  "5GQeUPTrCmc7rNvmxX9vqRisPuBJJXasDDokU7CSU9GcFjqb",
 		  "5HbXJRjtcTWjK2qNtmQbLRm64zTQVG6NKZbY8J9yqZkuUDNb",
-		  "5Et1ZCvwMjK25Ya5RnKGp4JE3ctTo7rJCDs6kfkx5GH1LRYj"
+		  "5Et1ZCvwMjK25Ya5RnKGp4JE3ctTo7rJCDs6kfkx5GH1LRYj",
+		  "5GyEArJB62BDKaAFfrDKnMkWZA6AhoU5neRxA1qTjkLBdMEg"
         ]
       },
       "palletGrandpa": {
@@ -31,7 +32,11 @@
 	  ],	
 	  [
 		  "5EDtWTMpJ4Pbo2wz9KacHfk5E7gpmx7XoSc8n2sgtfuPAaEq",1
+	  ],
+	  [
+		  "5GFGjzS19k8KYxXBQUjqPs7SoFCj6YrmJ2mvZ6qNFaDqe3nw",1
 	  ]
+
 	]
       },
       "palletBalances": {
