@@ -132,6 +132,8 @@ parameter_types! {
 	pub const Version: RuntimeVersion = VERSION;
 }
 
+
+
 // Configure FRAME pallets to include in runtime.
 
 impl frame_system::Trait for Runtime {
@@ -266,9 +268,13 @@ impl pallet_sudo::Trait for Runtime {
 impl pallet_template::Trait for Runtime {
 	type Event = Event;
 }
+parameter_types! {
+	pub const MaxPoeLength: u8 = 3;
+}
 
 impl pallet_poe::Trait for Runtime{
 	type Event = Event;
+    type MaxPoeLength = MaxPoeLength;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -483,4 +489,7 @@ impl_runtime_apis! {
 			Ok(batches)
 		}
 	}
+
+
+
 }

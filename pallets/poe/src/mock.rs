@@ -19,6 +19,7 @@ parameter_types! {
 	pub const MaximumBlockWeight: Weight = 1024;
 	pub const MaximumBlockLength: u32 = 2 * 1024;
 	pub const AvailableBlockRatio: Perbill = Perbill::from_percent(75);
+	pub const MaxPoeLength:u8 = 4;
 }
 
 impl system::Trait for Test {
@@ -51,9 +52,10 @@ impl system::Trait for Test {
 
 impl Trait for Test {
 	type Event = ();
+	type MaxPoeLength = MaxPoeLength;
 }
 
-pub type TemplateModule = Module<Test>;
+pub type PoeModule = Module<Test>;
 
 // Build genesis storage according to the mock runtime.
 pub fn new_test_ext() -> sp_io::TestExternalities {

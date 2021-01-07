@@ -9,6 +9,7 @@ use frame_support::{
 					decl_storage, decl_event, decl_error, dispatch };
 use frame_system::ensure_signed;
 use sp_std::prelude::*;
+use frame_support::traits::Get;
 
 #[cfg(test)]
 mod mock;
@@ -16,10 +17,12 @@ mod mock;
 #[cfg(test)]
 mod tests;
 
+pub const MAX_MEMBERS: usize = 2;
 /// Configure the pallet by specifying the parameters and types on which it depends.
 pub trait Trait: frame_system::Trait {
 	/// Because this pallet emits events, it depends on the runtime's definition of an event.
 	type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
+	type MaxPoeLength: Get<u8>;
 }
 
 // The pallet's runtime storage items.
@@ -43,7 +46,6 @@ decl_event!(
 		/// parameters. [something, who]
 		///
 		ClaimCreate(AccountId,Vec<u8>),
-
 		ClaimRevoked(AccountId,Vec<u8>),
 		ClaimTransfer(AccountId,AccountId,Vec<u8>),
 	}
@@ -54,7 +56,8 @@ decl_error! {
 	pub enum Error for Module<T: Trait> {
 		ProofAlreadyExist,
 		ClaimNotExist,
-		NotClaimOwner
+		NotClaimOwner,
+		ClaimTooLong
 	}
 }
 
@@ -65,13 +68,15 @@ decl_module! {
 	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
 		// Errors must be initialized if they are used by the pallet.
 		type Error = Error<T>;
-
 		// Events must be initialized if they are used by the pallet.
 		fn deposit_event() = default;
 
 		#[weight = 0]
 		pub fn create_claim(origin,claim:Vec<u8>)->dispatch::DispatchResult{
 			let sender = ensure_signed(origin)?;
+
+			ensure!(claim.len()<= MAX_MEMBERS,Error::<T>::ClaimTooLong);
+
 			ensure!(!Poes::<T>::contains_key(&claim),Error::<T>::ProofAlreadyExist);
 
 			Poes::<T>::insert(&claim,(sender.clone(), frame_system::Module::<T>::block_number()));
