@@ -273,6 +273,7 @@ impl pallet_kitties::Trait for Runtime {
 	type Event = Event;
 	type Randomness = RandomnessCollectiveFlip;
 	type KittyIndex = u32;
+
 }
 
 parameter_types! {

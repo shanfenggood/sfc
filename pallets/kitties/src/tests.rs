@@ -12,18 +12,20 @@ fn owned_kitties_can_append_value(){
     new_test_ext().execute_with(||{
         run_to_block(10);
         let origin = Origin::signed(1);
-
+        //第五题
        assert_eq!(KittiesModule::create(origin, ),Ok(()));
         assert_eq!(
             System::events(),
             vec![EventRecord {
                 phase: Phase::Initialization,
-                event: TestEvent::simple_event(Event::Created(1u64, 1)),
+                event: TestEvent::simple_event(Event::<Test>::Created(1u64, 0)),
                 topics: vec![],
             }]
         );
     });
 }
+
+
 
 
 

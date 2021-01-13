@@ -1,7 +1,9 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use codec::{Encode,Decode,Codec};
-use frame_support::{Parameter,decl_storage,decl_module,decl_error,decl_event,ensure,StorageValue,StorageMap,traits::Randomness};
+use frame_support::{Parameter,decl_storage,decl_module,decl_error,decl_event,ensure,StorageValue,StorageMap,traits::Randomness,
+                    traits::{Get, Currency, ReservableCurrency}
+                    };
 use sp_io::hashing::blake2_128;
 
 use std::vec::Vec;
@@ -23,6 +25,10 @@ mod mock;
 #[cfg(test)]
 mod tests;
 
+//第六题
+type BalanceOf<T> = <<T as Trait>::Currency as Currency<<T as frame_system::Trait>::AccountId>>::Balance;
+
+
 pub trait Trait: frame_system::Trait{
 
     type Event: From<Event<Self>>+Into<<Self as frame_system::Trait>::Event>;
@@ -30,6 +36,10 @@ pub trait Trait: frame_system::Trait{
 
     //第二题
     type KittyIndex: Parameter + Member + AtLeast32BitUnsigned + Codec + Default + Copy + Bounded ;
+
+
+    type KittyReserve: Get<BalanceOf<Self>>;
+    type Currency: Currency<Self::AccountId> + ReservableCurrency<Self::AccountId>;
 }
 
 
@@ -56,7 +66,8 @@ decl_error!{
         KittiesCountOverflow,
         InvalidKittyId,
         RequireDifferentParent,
-        NotKittyOwner
+        NotKittyOwner,
+        MoneyNotEnough
     }
 }
 
@@ -76,7 +87,10 @@ decl_module! {
 
         #[weight = 0]
         pub fn create(origin){
+
             let sender = ensure_signed(origin)?;
+            T::Currency::reserve(&sender, T::KittyReserve::get()).map_err(|_| Error::<T>::MoneyNotEnough )?;
+
             let kitty_id = Self::next_kitty_id()?;
 
             let dna = Self::random_value(&sender);
@@ -112,6 +126,8 @@ decl_module! {
         #[weight = 0]
         pub fn breed(origin,kitty_id_1:T::KittyIndex,kitty_id_2:T::KittyIndex){
             let sender = ensure_signed(origin)?;
+            T::Currency::reserve(&sender, T::KittyReserve::get()).map_err(|_| Error::<T>::MoneyNotEnough )?;
+
             let new_kitty_id = Self::do_breed(&sender,kitty_id_1,kitty_id_2)?;
 
             //加入孩子列表
