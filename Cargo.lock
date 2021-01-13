@@ -3278,6 +3278,7 @@ dependencies = [
  "pallet-aura",
  "pallet-balances",
  "pallet-grandpa",
+ "pallet-kitties",
  "pallet-poe",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
@@ -3540,6 +3541,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-kitties"
+version = "2.0.0"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "pallet-randomness-collective-flip",
+ "parity-scale-codec",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "pallet-poe"
 version = "2.0.0"
 dependencies = [
@@ -3554,9 +3569,9 @@ dependencies = [
 
 [[package]]
 name = "pallet-randomness-collective-flip"
-version = "2.0.0"
+version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6b62b8adc02901769b7756b054fa732b6d1aad01e8a2d6873a70fdcd38c59a1"
+checksum = "620221883f96e1b3d6288f29b3a87a0f27acaae069a15516440d5a5b8a66d2e3"
 dependencies = [
  "frame-support",
  "frame-system",

@@ -40,6 +40,7 @@ pub use frame_support::{
 
 /// Import the template pallet.
 pub use pallet_template;
+pub use pallet_kitties;
 
 
 /// An index to a block.
@@ -268,6 +269,12 @@ impl pallet_sudo::Trait for Runtime {
 impl pallet_template::Trait for Runtime {
 	type Event = Event;
 }
+impl pallet_kitties::Trait for Runtime {
+	type Event = Event;
+	type Randomness = RandomnessCollectiveFlip;
+	type KittyIndex = u32;
+}
+
 parameter_types! {
 	pub const MaxPoeLength: u8 = 3;
 }
@@ -294,6 +301,7 @@ construct_runtime!(
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		// Include the custom logic from the template pallet in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
+		KittiesModule: pallet_kitties::{Module, Call, Storage, Event<T>},
 		PoeModule: pallet_poe::{Module, Call, Storage, Event<T>},
 	}
 );
