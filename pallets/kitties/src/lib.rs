@@ -6,7 +6,7 @@ use frame_support::{Parameter,decl_storage,decl_module,decl_error,decl_event,ens
                     };
 use sp_io::hashing::blake2_128;
 
-use std::vec::Vec;
+use sp_std::vec::Vec;
 use frame_system::ensure_signed;
 use sp_runtime::{
     DispatchError,
