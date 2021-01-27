@@ -312,33 +312,33 @@ impl<T: Trait> Module<T> {
     }
 }
 
-impl<T: Trait> frame_support::unsigned::ValidateUnsigned for Module<T> {
-    type Call = Call<T>;
-
-    fn validate_unsigned(_source: TransactionSource, call: &Self::Call) -> TransactionValidity {
-        // let valid_tx = |provide| ValidTransaction::with_tag_prefix("ocw-demo")
-        //     .priority(UNSIGNED_TXS_PRIORITY)
-        //     .and_provides([&provide])
-        //     .longevity(3)
-        //     .propagate(true)
-        //     .build();
-
-        match call {
-            // Call::submit_number_unsigned(_number) => valid_tx(b"submit_number_unsigned".to_vec()),
-            // Call::submit_number_unsigned_with_signed_payload(ref payload, ref signature) => {
-            //     if !SignedPayload::<T>::verify::<T::AuthorityId>(payload, signature.clone()) {
-            //         return InvalidTransaction::BadProof.into();
-            //     }
-            //     valid_tx(b"submit_number_unsigned_with_signed_payload".to_vec())
-            // },
-            _ => InvalidTransaction::Call.into(),
-        }
-    }
-}
-
-impl<T: Trait> rt_offchain::storage_lock::BlockNumberProvider for Module<T> {
-    type BlockNumber = T::BlockNumber;
-    fn current_block_number() -> Self::BlockNumber {
-        <frame_system::Module<T>>::block_number()
-    }
-}
+// impl<T: Trait> frame_support::unsigned::ValidateUnsigned for Module<T> {
+//     type Call = Call<T>;
+//
+//     fn validate_unsigned(_source: TransactionSource, call: &Self::Call) -> TransactionValidity {
+//         // let valid_tx = |provide| ValidTransaction::with_tag_prefix("ocw-demo")
+//         //     .priority(UNSIGNED_TXS_PRIORITY)
+//         //     .and_provides([&provide])
+//         //     .longevity(3)
+//         //     .propagate(true)
+//         //     .build();
+//
+//         match call {
+//             // Call::submit_number_unsigned(_number) => valid_tx(b"submit_number_unsigned".to_vec()),
+//             // Call::submit_number_unsigned_with_signed_payload(ref payload, ref signature) => {
+//             //     if !SignedPayload::<T>::verify::<T::AuthorityId>(payload, signature.clone()) {
+//             //         return InvalidTransaction::BadProof.into();
+//             //     }
+//             //     valid_tx(b"submit_number_unsigned_with_signed_payload".to_vec())
+//             // },
+//             _ => InvalidTransaction::Call.into(),
+//         }
+//     }
+// }
+//
+// impl<T: Trait> rt_offchain::storage_lock::BlockNumberProvider for Module<T> {
+//     type BlockNumber = T::BlockNumber;
+//     fn current_block_number() -> Self::BlockNumber {
+//         <frame_system::Module<T>>::block_number()
+//     }
+// }
