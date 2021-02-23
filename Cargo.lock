@@ -3308,6 +3308,7 @@ dependencies = [
  "hex-literal",
  "pallet-aura",
  "pallet-balances",
+ "pallet-benchmark-demo",
  "pallet-dotprice",
  "pallet-grandpa",
  "pallet-kitties",
@@ -3529,6 +3530,17 @@ dependencies = [
  "parity-scale-codec",
  "serde",
  "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-benchmark-demo"
+version = "2.0.0"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
  "sp-std",
 ]
 

@@ -351,6 +351,10 @@ impl pallet_poe::Trait for Runtime{
     type MaxPoeLength = MaxPoeLength;
 }
 
+impl pallet_benchmark_demo::Trait for Runtime{
+	type Event = Event;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -371,6 +375,7 @@ construct_runtime!(
 		KittiesModule: pallet_kitties::{Module, Call, Storage, Event<T>},
 		PoeModule: pallet_poe::{Module, Call, Storage, Event<T>},
 		Offchain: pallet_dotprice::{Module, Call, Storage, Event<T> },
+		BenchmarkDemoModule: pallet_benchmark_demo::{Module, Call, Storage, Event<T> },
 	}
 );
 /// The address format for describing accounts.
@@ -565,6 +570,7 @@ impl_runtime_apis! {
 			add_benchmark!(params, batches, frame_system, SystemBench::<Runtime>);
 			add_benchmark!(params, batches, pallet_balances, Balances);
 			add_benchmark!(params, batches, pallet_timestamp, Timestamp);
+			add_benchmark!(params, batches, pallet_benchmark_demo, BenchmarkDemoModule);
 
 			if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
 			Ok(batches)
