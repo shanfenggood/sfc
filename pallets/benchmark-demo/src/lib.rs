@@ -73,7 +73,7 @@ decl_module! {
 		/// - Base Weight: 44.66 µs
 		/// - DB Weight: 1 Write
 		/// # </weight>
-		#[weight = T::DbWeight::get().writes(1) + 44_660_000]
+		#[weight = T::DbWeight::get().writes(1) + 32_690_000]
 		pub fn do_something(origin, something: u32) -> dispatch::DispatchResult {
 			// Check it was signed and get the signer. See also: ensure_root and ensure_none
 			let who = ensure_signed(origin)?;
